@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>rate cats</title>
+	</head>
+	<body>
+		<h1>RATE CATS</h1>
+		<table>
+			<tr>
+				<% for(let i=0;i<2;i++){ %>
+					<td> <img src="<%= rows[random[i]].img %>" style="width:300px;"></td>
+				<% } %>
+			</tr>
+			<tr>
+				<% for(let i=0;i<2;i++){ %>
+					<td><form method ="POST"
+						action="<%="/AddierenC/"+rows[random[i]].Id+ rows[random[i]].votes%>"
+						>
+						<button type ="submit">Vote up</button>
+					</form>	</td>
+				
+				<% } %>
+			</tr>
+		</table>
+		<a href="/">home</a><br>
+	</body>
+
+</html>

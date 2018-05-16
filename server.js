@@ -45,16 +45,22 @@ app.get('/', function (req,res){
 				}else{
 					console.log(rowsC);
 					topCats=rowsC
-          //cats section --holt daten über cats aus db
-          db.all(`SELECT * FROM cats`,function(error,rowsCats){
+			//cats section --holt daten über cats aus db
+			db.all(`SELECT * FROM cats`,function(error,rowsCats){
             if (error){
               console.log(err.message);
-            }else{
-              let randomCats =[Math.floor(Math.random()*rowsCats.length),Math.floor(Math.random()*rowsCats.length)]
-              //Verhindern das zwei gleiche bilder kommen
-              if(randomCats[0]==randomCats[1]){
-                randomCats[1]= Math.floor(Math.random()*rowsCats.length);
-              }
+            }
+			else{
+				let iCats =0;
+				let jCats= 0;
+				//Verhindern das zwei gleiche bilder kommen
+				do{
+					iCats=Math.floor(Math.random()*rowsCats.length);
+					jCats=Math.floor(Math.random()*rowsCats.length);
+				}while(iCats==jCats);
+				
+              let randomCats =[iCats,jCats];
+             
               //dogs section --holt alle daten von den hunden aus db
               db.all(`SELECT * FROM dogs`,function(error,rowsDogs){
             		if (error){
@@ -63,12 +69,15 @@ app.get('/', function (req,res){
             		}
             		else{
             			//Zwei zufällige bilder aus db auswählen
-            			let randomDogs =[Math.floor(Math.random()*rowsDogs.length),Math.floor(Math.random()*rowsDogs.length)]
-            			//Verhindern das zwei gleiche bilder kommen
-            			if(randomDogs[0]==randomDogs[1]){
-
-            				randomDogs[1]= Math.floor(Math.random()*rowsDogs.length);
-            			}
+            			let iDogs =0;
+						let jDogs= 0;
+						//Verhindern das zwei gleiche bilder kommen
+						do{
+							iDogs=Math.floor(Math.random()*rowsCats.length);
+							jDogs=Math.floor(Math.random()*rowsCats.length);
+						}while(iDogs==jDogs);
+				
+						let randomDogs =[iDogs,jDogs];
 
                   res.render('cats_and_dogs',{'topDogs': topDogs || [],
         					'topCats' : topCats || [],

@@ -2,19 +2,24 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/cats_and_dogs.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Sacramento" rel="stylesheet">
     <title>🐈Cats & Dogs🐕</title>
   </head>
+  <style>h1{font-family: 'Sacramento', cursive;font-size: 90px, margin: 50px, 50px, 50px, 50px}</style>
   <body>
     <!-- benutze im container<div> die css klasse cats-->
     <div class="cats">
       <h1>Cats</h1>
+      <%- include _rate_cats.ejs %>
     </div>
-    <div>
+    <div class="home">
       <h1>Cats & Dogs</h1><br>
       <h4>We let you rate for the cutest pet pictures</h4>
+      <%- include _home.ejs%>
     </div>
-    <div>
+    <div class="dogs">
       <h1>Dogs</h1>
+      <%- include _rate_dogs.ejs%>
     </div>
   </body>
 </html>

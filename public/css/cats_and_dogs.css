@@ -1,4 +1,16 @@
 .cats{
   /*styles für die Klasse Cats*/
   background-color: lightseagreen;
+  border: 4px dotted lavender;
+  background-attachment: scroll;
+  text shadow: 3px 2px red;
+  font-family: 'Amatic SC', cursive;
 }
+
+.dogs{
+  background-color: palegoldenrod;
+  border: 4px dotted cornsilk;
+  font-family: 'Amatic SC', cursive;
+}
+
+.home{font-family: 'Amatic SC', cursive;}

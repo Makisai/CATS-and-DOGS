@@ -29,11 +29,11 @@ let db = new sqlite3.Database('cats_and_dogs.db',(error)=>{
 app.get('/', function (req,res){
 	let topDogs =[];
 	let topCats =[];
-	
+
 	db.all(`SELECT * FROM dogs ORDER BY votes DESC LIMIT 5`,function(error,rows){
 		if (error){
 			console.log(err.message);
-		
+
 		}
 		else{
 			console.log(rows);
@@ -41,66 +41,48 @@ app.get('/', function (req,res){
 			db.all(`SELECT * FROM cats ORDER BY votes DESC LIMIT 5`,function(error,rowsC){
 				if (error){
 					console.log(err.message);
-				
-				}
-				else{
+
+				}else{
 					console.log(rowsC);
 					topCats=rowsC
-					res.render('home',{'topDogs': topDogs || [],
-					'topCats' : topCats || []});
+          //cats section --holt daten über cats aus db
+          db.all(`SELECT * FROM cats`,function(error,rowsCats){
+            if (error){
+              console.log(err.message);
+            }else{
+              let randomCats =[Math.floor(Math.random()*rowsCats.length),Math.floor(Math.random()*rowsCats.length)]
+              //Verhindern das zwei gleiche bilder kommen
+              if(randomCats[0]==randomCats[1]){
+                randomCats[1]= Math.floor(Math.random()*rowsCats.length);
+              }
+              //dogs section --holt alle daten von den hunden aus db
+              db.all(`SELECT * FROM dogs`,function(error,rowsDogs){
+            		if (error){
+            			console.log(err.message);
+
+            		}
+            		else{
+            			//Zwei zufällige bilder aus db auswählen
+            			let randomDogs =[Math.floor(Math.random()*rowsDogs.length),Math.floor(Math.random()*rowsDogs.length)]
+            			//Verhindern das zwei gleiche bilder kommen
+            			if(randomDogs[0]==randomDogs[1]){
+
+            				randomDogs[1]= Math.floor(Math.random()*rowsDogs.length);
+            			}
+
+                  res.render('cats_and_dogs',{'topDogs': topDogs || [],
+        					'topCats' : topCats || [],
+                  'rowsCats':  rowsCats || [],
+            			'randomCats' : randomCats,
+                  'rowsDogs':  rowsDogs || [],
+            			'randomDogs' : randomDogs });
+                }
+              });
+            }
+          });
+
 				}
 			});
-		}
-	});
-
-});
-
-//Hunde bewerten
-app.get('/rateDogs', function (req,res){
-	
-	db.all(`SELECT * FROM dogs`,function(error,rows){
-		if (error){
-			console.log(err.message);
-		
-		}
-		else{
-			//Zwei zufällige bilder aus db auswählen
-			let random =[Math.floor(Math.random()*rows.length),Math.floor(Math.random()*rows.length)]
-			//Verhindern das zwei gleiche bilder kommen
-			if(random[0]==random[1]){
-						
-				random[1]= Math.floor(Math.random()*rows.length);
-			}
-			
-			//Übergen aller Reihen der db und Array mit zufallszahlen
-			res.render('rateDogs', {'rows':  rows || [],
-										'random' : random});
-			
-		}
-	});
-
-});
-
-//Katzen bewerten
-app.get('/rateCats', function (req,res){
-	
-	db.all(`SELECT * FROM cats`,function(error,rows){
-		if (error){
-			console.log(err.message);
-		
-		}
-		else{
-			let random =[Math.floor(Math.random()*rows.length),Math.floor(Math.random()*rows.length)]
-			//Verhindern das zwei gleiche bilder kommen
-			if(random[0]==random[1]){
-						
-				random[1]= Math.floor(Math.random()*rows.length);
-			}
-			
-			
-			res.render('rateCats', {'rows':  rows || [],
-										'random' : random});
-			
 		}
 	});
 
@@ -109,26 +91,26 @@ app.get('/rateCats', function (req,res){
 //Upvote Hunde
 //Addiert +1 zur Spalte 'votes' des gewählten Bildes
 app.post('/AddierenD/:Id:votes',function(req,res){
-	
+
 	const id = req.params['Id'];
 	let votes = Number(req.params['votes']);
 	votes +=1;
 	const sql = `UPDATE dogs SET votes =${votes} WHERE id =${id}`;
 	console.log(sql);
 	db.run(sql, function(err){
-		res.redirect('/rateDogs');
+		res.redirect('/');
 	});
-});	
+});
 
 //Upvote Katzen
 app.post('/AddierenC/:Id:votes',function(req,res){
-	
+
 	const id = req.params['Id'];
 	let votes = Number(req.params['votes']);
 	votes +=1;
 	const sql = `UPDATE cats SET votes =${votes} WHERE id =${id}`;
 	console.log(sql);
 	db.run(sql, function(err){
-		res.redirect('/rateCats');
+		res.redirect('/');
 	});
-});	
+});

@@ -1,0 +1,18 @@
+Click on the cutest Cat
+<table>
+	<tr>
+		<% for(let i=0;i<2;i++){ %>
+			<td> <img src="<%= rowsCats[randomCats[i]].img %>" style="width:300px;"></td>
+		<% } %>
+	</tr>
+	<tr>
+		<% for(let i=0;i<2;i++){ %>
+			<td><form method ="POST"
+				action="<%="/AddierenC/"+rowsCats[randomCats[i]].Id+ rowsCats[randomCats[i]].votes%>"
+				>
+				<button type ="submit">Vote up</button>
+			</form>	</td>
+
+		<% } %>
+	</tr>
+</table>

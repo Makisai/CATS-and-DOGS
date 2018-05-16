@@ -1,0 +1,18 @@
+Click on the cutest Dog
+<table>
+	<tr>
+		<% for(let i=0;i<2;i++){ %>
+			<td> <img src="<%= rowsDogs[randomDogs[i]].img %>" style="width:300px;"></td>
+		<% } %>
+	</tr>
+	<tr>
+		<% for(let i=0;i<2;i++){ %>
+			<td><form method ="POST"
+				action="<%="/AddierenD/"+rowsDogs[randomDogs[i]].Id+ rowsDogs[randomDogs[i]].votes%>"
+				>
+				<button type ="submit">Vote up</button>
+			</form>	</td>
+
+		<% } %>
+	</tr>
+</table>

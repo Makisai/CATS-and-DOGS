@@ -4,6 +4,16 @@ var dogsSlide = () => {
 }
 
 var catsSlide = () => {
-  let containerD = document.getElementById("cats");
-  containerD.className = "cats cats-animation";
+  let containerC = document.getElementById("cats");
+  containerC.className = "cats cats-animation";
+}
+
+var catsSlideBack = () => {
+  let containerC2 = document.getElementById("cats");
+  containerC2.className = "cats cats-animation-back";
+}
+
+var dogsSlideBack = () => {
+  let containerD2 = document.getElementById("dogs");
+  containerD2.className = "dogs dogs-animation-back";
 }

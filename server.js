@@ -28,7 +28,7 @@ let db = new sqlite3.Database('cats_and_dogs.db',(error)=>{
 //----------------------------------------------------------------------------------------------//
 
 
-//Startseite zeigt die 5 Katzen und Hunde mit den Meisten votes an
+//Startseite zeigt die 4 Katzen und Hunde mit den Meisten votes an
 app.get('/', function (req,res){
 	let topDogs =[];
 	let topCats =[];
@@ -76,8 +76,8 @@ app.get('/', function (req,res){
 						let jDogs= 0;
 						//Verhindern das zwei gleiche bilder kommen
 						do{
-							iDogs=Math.floor(Math.random()*rowsCats.length);
-							jDogs=Math.floor(Math.random()*rowsCats.length);
+							iDogs=Math.floor(Math.random()*rowsDogs.length);
+							jDogs=Math.floor(Math.random()*rowsDogs.length);
 						}while(iDogs==jDogs);
 
 						let randomDogs =[iDogs,jDogs];

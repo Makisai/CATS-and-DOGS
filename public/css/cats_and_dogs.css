@@ -47,8 +47,22 @@
     transform: translateX(-100%);
   }
   to {
-    transform: translate(0%);
+    transform: translateX(0%);
   }
+}
+
+.cats-animation-back{
+  animation: slide-cats-out 3s forwards;
+}
+
+@keyframes slide-cats-out {
+  from{
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+
 }
 
 .dogs-animation{
@@ -63,6 +77,21 @@
     transform: translateX(0%);
   }
 }
+
+.dogs-animation-back{
+  animation: slide-dogs-out 3s forwards;
+}
+
+@keyframes slide-dogs-out {
+  from {
+    transform: translateX(0%);
+  }
+
+  to{
+    transform: translateX(100%);
+  }
+}
+
 /*versteck/schneidet alles, das über den sichtbereich hinaus geht ab*/
 body {
   overflow: hidden;

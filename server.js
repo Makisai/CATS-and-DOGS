@@ -12,7 +12,7 @@ app.engine('.ejs', ejs.__express);
 app.set('view engine', 'ejs');
 
 const port = 3000;
-app.listen(port, function(){
+app.listen(port, () => {
   console.log('listening on port' + port);
 });
 
@@ -25,12 +25,15 @@ let db = new sqlite3.Database('cats_and_dogs.db',(error)=>{
 	console.log('Connected to database cats_and_dogs')
 });
 
+//----------------------------------------------------------------------------------------------//
+
+
 //Startseite zeigt die 5 Katzen und Hunde mit den Meisten votes an
 app.get('/', function (req,res){
 	let topDogs =[];
 	let topCats =[];
 
-	db.all(`SELECT * FROM dogs ORDER BY votes DESC LIMIT 5`,function(error,rows){
+	db.all(`SELECT * FROM dogs ORDER BY votes DESC LIMIT 4`,function(error,rows){
 		if (error){
 			console.log(err.message);
 
@@ -38,7 +41,7 @@ app.get('/', function (req,res){
 		else{
 			console.log(rows);
 			topDogs=rows;
-			db.all(`SELECT * FROM cats ORDER BY votes DESC LIMIT 5`,function(error,rowsC){
+			db.all(`SELECT * FROM cats ORDER BY votes DESC LIMIT 4`,function(error,rowsC){
 				if (error){
 					console.log(err.message);
 
@@ -58,9 +61,9 @@ app.get('/', function (req,res){
 					iCats=Math.floor(Math.random()*rowsCats.length);
 					jCats=Math.floor(Math.random()*rowsCats.length);
 				}while(iCats==jCats);
-				
+
               let randomCats =[iCats,jCats];
-             
+
               //dogs section --holt alle daten von den hunden aus db
               db.all(`SELECT * FROM dogs`,function(error,rowsDogs){
             		if (error){
@@ -76,7 +79,7 @@ app.get('/', function (req,res){
 							iDogs=Math.floor(Math.random()*rowsCats.length);
 							jDogs=Math.floor(Math.random()*rowsCats.length);
 						}while(iDogs==jDogs);
-				
+
 						let randomDogs =[iDogs,jDogs];
 
                   res.render('cats_and_dogs',{'topDogs': topDogs || [],
@@ -84,7 +87,8 @@ app.get('/', function (req,res){
                   'rowsCats':  rowsCats || [],
             			'randomCats' : randomCats,
                   'rowsDogs':  rowsDogs || [],
-            			'randomDogs' : randomDogs });
+            			'randomDogs' : randomDogs,
+                  });
                 }
               });
             }

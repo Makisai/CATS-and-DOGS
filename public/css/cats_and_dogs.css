@@ -2,15 +2,74 @@
   /*styles für die Klasse Cats*/
   background-color: lightseagreen;
   border: 4px dotted lavender;
-  background-attachment: scroll;
-  text shadow: 3px 2px red;
   font-family: 'Amatic SC', cursive;
+  /*legt _rate_cats links neben home(auf der x achse)*/
+  transform: translateX(-100%);
+  /*absolute gibt geneaue position auf dem screen an*/
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 300;
 }
 
 .dogs{
   background-color: palegoldenrod;
   border: 4px dotted cornsilk;
   font-family: 'Amatic SC', cursive;
+  transform: translateX(100%);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 200;
 }
 
-.home{font-family: 'Amatic SC', cursive;}
+.home{font-family: 'Amatic SC', cursive;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 100;
+}
+
+
+.cats-animation{
+  /* animationsname animationsdauer seite bleibt wie nach animation*/
+  animation: slide-cats-in 3s forwards;
+}
+
+@keyframes slide-cats-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translate(0%);
+  }
+}
+
+.dogs-animation{
+  animation: slide-dogs-in 3s forwards;
+}
+
+@keyframes slide-dogs-in {
+  from {
+    transform: translateX(100%);
+  }
+  to{
+    transform: translateX(0%);
+  }
+}
+/*versteck/schneidet alles, das über den sichtbereich hinaus geht ab*/
+body {
+  overflow: hidden;
+}
+
+h1{
+  font-family: 'Sacramento', cursive;
+  font-size: 90px;
+  margin: 0px;
+}

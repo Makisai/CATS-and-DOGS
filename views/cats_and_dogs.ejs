@@ -2,13 +2,14 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/cats_and_dogs.css">
+    <!-- funtionen in animations.js sind auf der ganzen seite verfügbar -->
+    <script src="js/animations.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Sacramento" rel="stylesheet">
     <title>🐈Cats & Dogs🐕</title>
   </head>
-  <style>h1{font-family: 'Sacramento', cursive;font-size: 90px, margin: 50px, 50px, 50px, 50px}</style>
   <body>
     <!-- benutze im container<div> die css klasse cats-->
-    <div class="cats">
+    <div class="cats" id="cats">
       <h1>Cats</h1>
       <%- include _rate_cats.ejs %>
     </div>
@@ -17,7 +18,7 @@
       <h4>We let you rate for the cutest pet pictures</h4>
       <%- include _home.ejs%>
     </div>
-    <div class="dogs">
+    <div class="dogs" id="dogs">
       <h1>Dogs</h1>
       <%- include _rate_dogs.ejs%>
     </div>

@@ -1,6 +1,8 @@
 const express = require('express');
 const ejs = require('ejs');
 const app = express();
+//multer:
+const multer  = require('multer');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -25,6 +27,31 @@ let db = new sqlite3.Database('cats_and_dogs.db',(error)=>{
 	console.log('Connected to database cats_and_dogs')
 });
 
+//Upload Bilder
+let storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './public/images');	// define folder for uploaded files
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.originalname); // define file name of uploaded files
+  }
+});
+let upload = multer({ storage : storage}).single('dateiname');
+
+
+
+
+app.post('/upload_image', function(req, res){
+	upload(req, res, function(err) {
+	  if(err) {
+		console.log('Error Occured', err);
+		return;
+	  }
+	  console.log(req.file);
+	  res.end('Your file has been uploaded');
+	});
+});
+
 //----------------------------------------------------------------------------------------------//
 
 
@@ -32,6 +59,10 @@ let db = new sqlite3.Database('cats_and_dogs.db',(error)=>{
 app.get('/', function (req,res){
 	let topDogs =[];
 	let topCats =[];
+	
+	app.get('/upload', function (request, response) {
+	response.render('upload');
+});
 
 	db.all(`SELECT * FROM dogs ORDER BY votes DESC LIMIT 4`,function(error,rows){
 		if (error){

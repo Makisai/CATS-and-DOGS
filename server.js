@@ -91,7 +91,7 @@ app.post('/upload_catimage', function(req, res){
 app.get('/uploadSuccessCat', function (request, response) {
 	response.render('uploadSuccessCat');
 	});
-	
+
 app.get('/uploadSuccessDog', function (request, response) {
 	response.render('uploadSuccessDog');
 	});
@@ -105,11 +105,11 @@ app.get('/uploadSuccessDog', function (request, response) {
 app.get('/', function (req,res){
 	let topDogs =[];
 	let topCats =[];
-	
+
 	app.get('/uploadDogs', function (request, response) {
 	response.render('uploadDogs');
 	});
-	
+
 	app.get('/uploadCats', function (request, response) {
 	response.render('uploadCats');
 	});
@@ -170,6 +170,7 @@ app.get('/', function (req,res){
             			'randomCats' : randomCats,
                   'rowsDogs':  rowsDogs || [],
             			'randomDogs' : randomDogs,
+                  'view' : req.query['view'],
                   });
                 }
               });
@@ -193,7 +194,7 @@ app.post('/AddierenD/:Id:votes',function(req,res){
 	const sql = `UPDATE dogs SET votes =${votes} WHERE id =${id}`;
 	console.log(sql);
 	db.run(sql, function(err){
-		res.redirect('/');
+		res.redirect('/?view=dog');
 	});
 });
 
@@ -206,6 +207,6 @@ app.post('/AddierenC/:Id:votes',function(req,res){
 	const sql = `UPDATE cats SET votes =${votes} WHERE id =${id}`;
 	console.log(sql);
 	db.run(sql, function(err){
-		res.redirect('/');
+		res.redirect('/?view=cat');
 	});
 });

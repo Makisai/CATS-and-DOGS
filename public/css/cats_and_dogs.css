@@ -34,12 +34,14 @@
   right: 0px;
   bottom: 0px;
   z-index: 100;
+  display: grid;
 }
 
 
 .cats-animation{
   /* animationsname animationsdauer seite bleibt wie nach animation*/
-  animation: slide-cats-in 3s forwards;
+  animation: slide-cats-in 1.7s forwards;
+  animation-timing-function: ease-in;
 }
 
 @keyframes slide-cats-in {
@@ -62,7 +64,6 @@
   to {
     transform: translateX(-100%);
   }
-
 }
 
 .dogs-animation{
@@ -91,6 +92,31 @@
     transform: translateX(100%);
   }
 }
+
+.stay-at-cats{
+  animation: stay-cats 0s forwards;
+}
+  @keyframes stay-cats{
+    from{
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+
+  .stay-at-dogs{
+    animation: stay-dogs 0s forwards;
+  }
+    @keyframes stay-dogs{
+      from{
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0%);
+      }
+    }
+
 
 /*versteck/schneidet alles, das über den sichtbereich hinaus geht ab*/
 body {

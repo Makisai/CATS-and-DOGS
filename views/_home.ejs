@@ -1,4 +1,29 @@
 <!-- DOGS -->
+<div class="header-stripe"></div>
+<div class="header">
+	<h1>Cats & Dogs</h1>
+</div>
+<div class="subtitle"><h2>✔ We let you rate for the cutest pet pictures ✔</h2></div>
+<div class="half-circle-right">
+	<a onclick="catsSlide()"><div class="btn">I'm a Catperson</div></a>
+</div>
+<div class="cat-area">
+	<table>
+		<tr>
+			<% for(let i=0;i<4;i++){ %>
+				<td> <img src="<%= topCats[i].img %>" style="width:300px;"></td>
+			<% } %>
+		</tr>
+		<tr>
+			<% for(let i=0;i<4;i++){ %>
+				<td><%= topCats[i].votes %></td>
+			<% } %>
+		</tr>
+	</table>
+</div>
+
+<!--
+
 <table>
 	<tr>
 		<% for(let i=0;i<4;i++){ %>
@@ -17,23 +42,4 @@
 
 <button onclick="dogsSlide()">I'm a Dogperson</button>
 
-<!--//CATS-->
-
-<button onclick="catsSlide()">I'm a Catperson</button>
-
-<table>
-
-	<tr>
-		<% for(let i=0;i<4;i++){ %>
-			<td> <img src="<%= topCats[i].img %>" style="width:300px;"></td>
-
-		<% } %>
-	</tr>
-	<tr>
-		<% for(let i=0;i<4;i++){ %>
-			<td><%= topCats[i].votes %></td>
-
-		<% } %>
-	</tr>
-
-</table>
+-->

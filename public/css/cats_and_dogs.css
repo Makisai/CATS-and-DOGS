@@ -27,7 +27,9 @@
   z-index: 200;
 }
 
-.home{font-family: 'Amatic SC', cursive;
+.home{
+  background-color: #819ca9;
+  font-family: 'Amatic SC', cursive;
   position: absolute;
   left: 0px;
   top: 0px;
@@ -35,7 +37,49 @@
   bottom: 0px;
   z-index: 100;
   display: grid;
+  grid-template-columns: 10% 20% 20% 20% 20% 10%;
+  grid-template-rows: 5% 20% 5% 10% 20% 20% auto;
+  grid-template-areas:
+  "headertop      headertop headertop headertop headertop headertop"
+  "header         header    header    header    header    header"
+  ".              sub       sub       sub       sub       ."
+  ".              .         .         .         .         ."
+  "leftButtonTop  cats      cats      .         .         ."
+  "leftButtonTop  cats      cats      .         .         .";
 }
+
+.header-stripe{
+  background-color: #29434e;
+  grid-area: headertop;
+}
+
+.header{
+  padding-bottom: 5px;
+  text-align: center;
+  background-color: #546e7a;
+  grid-area: header;
+}
+
+.subtitle{
+  text-align: center;
+  grid-area: sub;
+}
+
+.half-circle-right{
+     grid-area: leftButtonTop;
+}
+
+.btn {
+  height:90px;
+  width:45px;
+  border-radius: 0 90px 90px 0;
+  background:#f57f17;
+}
+
+.cat-area{
+  grid-area: cats;
+}
+
 
 
 .cats-animation{
@@ -124,7 +168,17 @@ body {
 }
 
 h1{
-  font-family: 'Sacramento', cursive;
-  font-size: 90px;
-  margin: 0px;
+  font-family: 'Sacramento';
+  font-weight: 200;
+  font-size: 12vh;
+  margin: 5px;
+  color: white;
+}
+
+h2{
+  font-size: 4vh;
+  font-weight: lighter;
+  margin: 0;
+  letter-spacing: 3px;
+  word-spacing: 5px;
 }

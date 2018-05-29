@@ -27,30 +27,66 @@ let db = new sqlite3.Database('cats_and_dogs.db',(error)=>{
 	console.log('Connected to database cats_and_dogs')
 });
 
+let nextCat;
+let nextDog;
+
 //Upload Bilder
-let storage =   multer.diskStorage({
+let storageDogs =   multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './public/images');	// define folder for uploaded files
   },
   filename: function (req, file, callback) {
-    callback(null, file.originalname); // define file name of uploaded files
+    callback(null, "dog"+nextDog+".jpg"); // define file name of uploaded files
   }
 });
-let upload = multer({ storage : storage}).single('dateiname');
+let uploadDogs = multer({ storage : storageDogs}).single('dateiname');
+
+let storageCats =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './public/images');	// define folder for uploaded files
+  },
+  filename: function (req, file, callback) {
+    callback(null, "cat"+nextCat+".jpg"); // define file name of uploaded files
+  }
+});
+let uploadCats = multer({ storage : storageCats}).single('dateiname');
 
 
 
 
-app.post('/upload_image', function(req, res){
-	upload(req, res, function(err) {
+app.post('/upload_dogimage', function(req, res){
+	uploadDogs(req, res, function(err) {
 	  if(err) {
 		console.log('Error Occured', err);
 		return;
 	  }
+	  let imgpath = "images/dog"+nextDog+".jpg";
+	  sql =`INSERT INTO dogs (img)VALUES ('${imgpath}')`
+	  console.log(sql);
+	  db.run(sql);
 	  console.log(req.file);
 	  res.end('Your file has been uploaded');
 	});
+
 });
+
+app.post('/upload_catimage', function(req, res){
+	uploadCats(req, res, function(err) {
+	  if(err) {
+		console.log('Error Occured', err);
+		return;
+	  }
+	  let imgpath = "images/cat"+nextCat+".jpg";
+	  sql =`INSERT INTO cats (img)VALUES ('${imgpath}')`
+	  console.log(sql);
+	  db.run(sql);
+	  console.log(req.file);
+	  res.end('Your file has been uploaded');
+	});
+
+});
+
+
 
 //----------------------------------------------------------------------------------------------//
 
@@ -60,9 +96,13 @@ app.get('/', function (req,res){
 	let topDogs =[];
 	let topCats =[];
 	
-	app.get('/upload', function (request, response) {
-	response.render('upload');
-});
+	app.get('/uploadDogs', function (request, response) {
+	response.render('uploadDogs');
+	});
+	
+	app.get('/uploadCats', function (request, response) {
+	response.render('uploadCats');
+	});
 
 	db.all(`SELECT * FROM dogs ORDER BY votes DESC LIMIT 4`,function(error,rows){
 		if (error){
@@ -94,7 +134,7 @@ app.get('/', function (req,res){
 				}while(iCats==jCats);
 
               let randomCats =[iCats,jCats];
-
+				nextCat= rowsCats.length+1;
               //dogs section --holt alle daten von den hunden aus db
               db.all(`SELECT * FROM dogs`,function(error,rowsDogs){
             		if (error){
@@ -112,6 +152,7 @@ app.get('/', function (req,res){
 						}while(iDogs==jDogs);
 
 						let randomDogs =[iDogs,jDogs];
+						nextDog = rowsDogs.length+1;
 
                   res.render('cats_and_dogs',{'topDogs': topDogs || [],
         					'topCats' : topCats || [],

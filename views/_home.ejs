@@ -4,10 +4,29 @@
 	<h1>Cats & Dogs</h1>
 </div>
 <div class="subtitle"><h2>✔ We let you rate for the cutest pet pictures ✔</h2></div>
-<div class="half-circle-right">
-	<a onclick="catsSlide()"><div class="btn">I'm a Catperson</div></a>
+<div class="half-circle-left">
+	<div class="align-button">
+		<a onclick="catsSlide()"><div class="btn btn-left">I'm a <br /> Catperson</div></a>
+	</div>
 </div>
-<div class="cat-area">
+	<div class="cat-pictures">
+			<% for(let i=0;i<4;i++){ %>
+				<img class="single-cat" src="<%= topCats[i].img %>">
+			<%}%>
+	</div>
+	<div class="half-circle-right">
+		<div class="align-button">
+			<a onclick="dogsSlide()"><div class="btn btn-right">I'm a <br /> Dogperson</div></a>
+		</div>
+	</div>
+	<div class="dog-pictures">
+			<% for(let i=0;i<4;i++){ %>
+				<img class="single-dog" src="<%= topDogs[i].img %>">
+			<%}%>
+	</div>
+
+
+<!--
 	<table>
 		<tr>
 			<% for(let i=0;i<4;i++){ %>
@@ -20,9 +39,8 @@
 			<% } %>
 		</tr>
 	</table>
-</div>
 
-<!--
+
 
 <table>
 	<tr>

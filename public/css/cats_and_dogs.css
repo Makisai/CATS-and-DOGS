@@ -44,8 +44,8 @@
   "header         header    header    header    header    header"
   ".              sub       sub       sub       sub       ."
   ".              .         .         .         .         ."
-  "leftButtonTop  cats      cats      .         .         ."
-  "leftButtonTop  cats      cats      .         .         .";
+  "leftButtonTop  cat      cat      dog         dog         rightButtonTop"
+  "leftButtonTop  cat      cat      dog         dog         rightButtonTop";
 }
 
 .header-stripe{
@@ -65,22 +65,73 @@
   grid-area: sub;
 }
 
-.half-circle-right{
+.half-circle-left{
      grid-area: leftButtonTop;
 }
 
-.btn {
-  height:90px;
-  width:45px;
+.btn-left {
+  margin-top: -90px;
+  height:180px;
+  width:90px;
   border-radius: 0 90px 90px 0;
   background:#f57f17;
+  text-align: center;
 }
 
-.cat-area{
-  grid-area: cats;
+.half-circle-right{
+     grid-area: rightButtonTop;
 }
 
+.btn-right {
+  float: right;
+  margin-top: -90px;
+  height:180px;
+  width:90px;
+  border-radius: 90px 0px 0px 90px;
+  background:#f57f17;
+  text-align: center;
+}
 
+.btn:hover{
+  background-color: #bb5000;
+  cursor: pointer;
+}
+
+.align-button{
+  height:100%;
+  width:100%;
+  transform: translate(0%, 50%);
+}
+
+.cat-pictures{
+  grid-area: cat;
+  align-content: stretch
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.single-cat{
+  height: 49%;
+  width: 49%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.dog-pictures{
+  grid-area: dog;
+  align-content: stretch
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.single-dog{
+  height: 49%;
+  width: 49%;
+  border-radius: 8px;
+  object-fit: cover;
+}
 
 .cats-animation{
   /* animationsname animationsdauer seite bleibt wie nach animation*/

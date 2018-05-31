@@ -1,4 +1,24 @@
-Click on the cutest Dog
+<div class="header-stripe"></div>
+<div class="header">
+	<h1>Dogs</h1>
+</div>
+<div class="subtitle"><h2>Click on the cutest Dog</h2></div>
+<div class="half-circle-left">
+	<div class="align-button">
+		<a onclick="dogsSlideBack()"><div class="btn btn-left">Back to <br /> start</div></a>
+	</div>
+</div>
+<div class="dog-pictures">
+		<% for(let i=0;i<2;i++){ %>
+			<a class="a-size" href="<%="/AddierenD/" + rowsDogs[randomDogs[i]].Id +"/"+ rowsDogs[randomDogs[i]].votes %>">
+				<img class="single-pet-rate" src="<%= rowsDogs[randomDogs[i]].img %>">
+			</a>
+		<% } %>
+</div>
+<div class="footer"></div>
+
+
+<!--
 <table>
 	<tr>
 		<% for(let i=0;i<2;i++){ %>
@@ -18,5 +38,8 @@ Click on the cutest Dog
 </table>
 
 <button onclick="dogsSlideBack()">Back to start</button>
+
+
 </br>
 <button><a href="/uploadDogs">Upload your own dog</a></button>
+-->

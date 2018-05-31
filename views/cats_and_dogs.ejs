@@ -10,14 +10,12 @@
   <body>
     <!-- benutze im container<div> die css klasse cats // wenn die variable view gleich cat ist dann benutze auch die klasse stay-at-cats -->
     <div class="cats <%if (view==='cat'){%> stay-at-cats <%}%>" id="cats">
-      <h1>Cats</h1>
       <%- include _rate_cats.ejs %>
     </div>
-    <div class="home">
+    <div class="home" id="home">
       <%- include _home.ejs%>
     </div>
     <div class="dogs <%if (view==='dog'){%> stay-at-dogs <%}%>" id="dogs">
-      <h1>Dogs</h1>
       <%- include _rate_dogs.ejs%>
     </div>
   </body>

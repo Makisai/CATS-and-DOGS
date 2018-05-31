@@ -186,7 +186,7 @@ app.get('/', function (req,res){
 
 //Upvote Hunde
 //Addiert +1 zur Spalte 'votes' des gewählten Bildes
-app.post('/AddierenD/:Id:votes',function(req,res){
+app.get('/AddierenD/:Id/:votes',function(req,res){
 
 	const id = req.params['Id'];
 	let votes = Number(req.params['votes']);
@@ -199,7 +199,7 @@ app.post('/AddierenD/:Id:votes',function(req,res){
 });
 
 //Upvote Katzen
-app.post('/AddierenC/:Id:votes',function(req,res){
+app.get('/AddierenC/:Id/:votes',function(req,res){
 
 	const id = req.params['Id'];
 	let votes = Number(req.params['votes']);

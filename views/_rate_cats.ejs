@@ -1,22 +1,19 @@
-Click on the cutest Cat
-<table>
-	<tr>
+<div class="header-stripe"></div>
+<div class="header">
+	<h1>Cats</h1>
+</div>
+<div class="subtitle"><h2>Click on the cutest Cat</h2></div>
+<div class="half-circle-right">
+	<div class="align-button">
+		<a onclick="catsSlideBack()"><div class="btn btn-right">Back to <br /> start</div></a>
+	</div>
+</div>
+<div class="cat-pictures">
 		<% for(let i=0;i<2;i++){ %>
-			<td> <img src="<%= rowsCats[randomCats[i]].img %>" style="width:300px;"></td>
+			<a class="a-size" href="<%="/AddierenC/" + rowsCats[randomCats[i]].Id +"/"+ rowsCats[randomCats[i]].votes %>">
+				<img class="single-pet-rate" src="<%= rowsCats[randomCats[i]].img %>">
+			</a>
 		<% } %>
-	</tr>
-	<tr>
-		<% for(let i=0;i<2;i++){ %>
-			<td><form method ="POST"
-				action="<%="/AddierenC/"+rowsCats[randomCats[i]].Id+ rowsCats[randomCats[i]].votes%>"
-				>
-				<button type ="submit">Vote up</button>
-			</form>	</td>
-
-		<% } %>
-	</tr>
-</table>
-
-<button onclick="catsSlideBack()">Back to start</button>
-</br>
-<button><a href="/uploadCats">Upload your own cat</a></button>
+</div>
+<div><a href="/uploadCats">Dont like theses Cats? Upload your own</a></div>
+<div class="footer"></div>

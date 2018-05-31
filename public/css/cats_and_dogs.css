@@ -1,7 +1,5 @@
 .cats{
-  /*styles für die Klasse Cats*/
-  background-color: lightseagreen;
-  border: 4px dotted lavender;
+  background-color: #819ca9;
   font-family: 'Amatic SC', cursive;
   /*legt _rate_cats links neben home(auf der x achse)*/
   transform: translateX(-100%);
@@ -12,11 +10,22 @@
   right: 0px;
   bottom: 0px;
   z-index: 300;
+  display: grid;
+  grid-template-columns: 10% 40% 40% 10%;
+  grid-template-rows: 5% 20% 5% 5% 25% 25% 10% 5%;
+  grid-template-areas:
+  "headertop      headertop headertop headertop "
+  "header         header    header    header"
+  ".              sub       sub       ."
+  ".              .         .         ."
+  ".              cat      cat        rightButton"
+  ".              cat      cat        rightButton"
+  ".              .         .         ."
+  "footer         footer    footer    footer"
 }
 
 .dogs{
-  background-color: palegoldenrod;
-  border: 4px dotted cornsilk;
+  background-color: #819ca9;
   font-family: 'Amatic SC', cursive;
   transform: translateX(100%);
   position: absolute;
@@ -25,6 +34,18 @@
   right: 0px;
   bottom: 0px;
   z-index: 200;
+  display: grid;
+  grid-template-columns: 10% 40% 40% 10%;
+  grid-template-rows: 5% 20% 5% 5% 25% 25% 10% 5%;
+  grid-template-areas:
+  "headertop      headertop headertop headertop "
+  "header         header    header    header"
+  ".              sub       sub       ."
+  ".              .         .         ."
+  "leftButtonTop  dog      dog        ."
+  "leftButtonTop  dog      dog        ."
+  ".              .         .         ."
+  "footer         footer    footer    footer"
 }
 
 .home{
@@ -38,19 +59,22 @@
   z-index: 100;
   display: grid;
   grid-template-columns: 10% 20% 20% 20% 20% 10%;
-  grid-template-rows: 5% 20% 5% 10% 20% 20% auto;
+  grid-template-rows: 5% 20% 5% 5% 25% 25% 10% 5%;
   grid-template-areas:
   "headertop      headertop headertop headertop headertop headertop"
   "header         header    header    header    header    header"
   ".              sub       sub       sub       sub       ."
   ".              .         .         .         .         ."
-  "leftButtonTop  cat      cat      dog         dog         rightButtonTop"
-  "leftButtonTop  cat      cat      dog         dog         rightButtonTop";
+  "leftButtonTop  cat      cat      dog         dog       rightButton"
+  "leftButtonTop  cat      cat      dog         dog       rightButton"
+  ".              .        .        .           .         ."
+  "footer         footer   footer   footer      footer    footer"
 }
 
 .header-stripe{
   background-color: #29434e;
   grid-area: headertop;
+  box-shadow: 0px 0px 5px black;
 }
 
 .header{
@@ -58,11 +82,18 @@
   text-align: center;
   background-color: #546e7a;
   grid-area: header;
+  box-shadow: 0px 0px 5px black;
 }
 
 .subtitle{
   text-align: center;
   grid-area: sub;
+}
+
+.footer{
+  grid-area: footer;
+  background-color: #29434e;
+  border-top: 5px solid #546e7a;
 }
 
 .half-circle-left{
@@ -79,7 +110,7 @@
 }
 
 .half-circle-right{
-     grid-area: rightButtonTop;
+     grid-area: rightButton;
 }
 
 .btn-right {
@@ -93,7 +124,7 @@
 }
 
 .btn:hover{
-  background-color: #bb5000;
+  background-color: #ffaf4c;
   cursor: pointer;
 }
 
@@ -105,38 +136,50 @@
 
 .cat-pictures{
   grid-area: cat;
-  align-content: stretch
+  align-content: stretch;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-}
-
-.single-cat{
-  height: 49%;
-  width: 49%;
-  border-radius: 8px;
-  object-fit: cover;
 }
 
 .dog-pictures{
   grid-area: dog;
-  align-content: stretch
+  align-content: stretch;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.single-dog{
-  height: 49%;
-  width: 49%;
-  border-radius: 8px;
+
+.single-pet{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 45%;
+  width: 45%;
+  border-radius: 5px;
   object-fit: cover;
 }
 
+.single-pet-rate{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.a-size{
+  width:45%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
 .cats-animation{
   /* animationsname animationsdauer seite bleibt wie nach animation*/
-  animation: slide-cats-in 1.7s forwards;
-  animation-timing-function: ease-in;
+  animation: slide-cats-in 0.2s forwards;
+  animation-timing-function: linear;
 }
 
 @keyframes slide-cats-in {
@@ -149,7 +192,8 @@
 }
 
 .cats-animation-back{
-  animation: slide-cats-out 3s forwards;
+  animation: slide-cats-out 0.2s forwards;
+  animation-timing-function: linear;
 }
 
 @keyframes slide-cats-out {
@@ -162,7 +206,8 @@
 }
 
 .dogs-animation{
-  animation: slide-dogs-in 3s forwards;
+  animation: slide-dogs-in 0.2s forwards;
+  animation-timing-function: linear;
 }
 
 @keyframes slide-dogs-in {
@@ -175,7 +220,8 @@
 }
 
 .dogs-animation-back{
-  animation: slide-dogs-out 3s forwards;
+  animation: slide-dogs-out 0.2s forwards;
+  animation-timing-function: linear;
 }
 
 @keyframes slide-dogs-out {
@@ -190,6 +236,7 @@
 
 .stay-at-cats{
   animation: stay-cats 0s forwards;
+  animation-timing-function: linear;
 }
   @keyframes stay-cats{
     from{
@@ -202,6 +249,7 @@
 
   .stay-at-dogs{
     animation: stay-dogs 0s forwards;
+    animation-timing-function: linear;
   }
     @keyframes stay-dogs{
       from{
@@ -228,7 +276,7 @@ h1{
 
 h2{
   font-size: 4vh;
-  font-weight: lighter;
+  font-weight: normal;
   margin: 0;
   letter-spacing: 3px;
   word-spacing: 5px;

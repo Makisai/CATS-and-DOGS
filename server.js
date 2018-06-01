@@ -30,7 +30,7 @@ let db = new sqlite3.Database('cats_and_dogs.db',(error)=>{
 let nextCat;
 let nextDog;
 
-//Upload Bilder
+//Upload Bilder mit Multer
 let storageDogs =   multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './public/images');	// define folder for uploaded files

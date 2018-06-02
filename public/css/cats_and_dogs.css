@@ -120,10 +120,17 @@
   width:90px;
   border-radius: 90px 0px 0px 90px;
   background:#f57f17;
+}
+.btn{
+  display:flex;
   text-align: center;
+  align-items: center;
+  font-size: 4vh;
 }
 
+
 .btn:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #ffaf4c;
   cursor: pointer;
 }
@@ -152,6 +159,7 @@
 
 
 .single-pet{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-left: 10px;
   margin-right: 10px;
   height: 45%;
@@ -161,6 +169,8 @@
 }
 
 .single-pet-rate{
+  /*box-shadow: https://www.w3schools.com/css/css3_shadows.asp*/
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-left: 10px;
   margin-right: 10px;
   height: 100%;

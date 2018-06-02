@@ -36,7 +36,7 @@ let storageDogs =   multer.diskStorage({
     callback(null, './public/images');	// define folder for uploaded files
   },
   filename: function (req, file, callback) {
-    callback(null, "dog"+nextDog+".jpg"); // define file name of uploaded files
+    callback(null, "dog" + nextDog + ".jpg"); // define file name of uploaded files
   }
 });
 let uploadDogs = multer({ storage : storageDogs}).single('dateiname');
@@ -46,7 +46,7 @@ let storageCats =   multer.diskStorage({
     callback(null, './public/images');	// define folder for uploaded files
   },
   filename: function (req, file, callback) {
-    callback(null, "cat"+nextCat+".jpg"); // define file name of uploaded files
+    callback(null, "cat" + nextCat + ".jpg"); // define file name of uploaded files
   }
 });
 let uploadCats = multer({ storage : storageCats}).single('dateiname');
@@ -100,84 +100,76 @@ app.get('/uploadSuccessDog', function (request, response) {
 
 //----------------------------------------------------------------------------------------------//
 
+app.get('/uploadDogs', function (request, response) {
+  response.render('uploadDogs');
+});
+
+app.get('/uploadCats', function (request, response) {
+  response.render('uploadCats');
+});
 
 //Startseite zeigt die 4 Katzen und Hunde mit den Meisten votes an
 app.get('/', function (req,res){
 	let topDogs =[];
 	let topCats =[];
 
-	app.get('/uploadDogs', function (request, response) {
-	response.render('uploadDogs');
-	});
-
-	app.get('/uploadCats', function (request, response) {
-	response.render('uploadCats');
-	});
-
 	db.all(`SELECT * FROM dogs ORDER BY votes DESC LIMIT 4`,function(error,rows){
 		if (error){
-			console.log(err.message);
-
-		}
-		else{
+			console.log(error.message);
+		} else {
 			console.log(rows);
 			topDogs=rows;
 			db.all(`SELECT * FROM cats ORDER BY votes DESC LIMIT 4`,function(error,rowsC){
 				if (error){
-					console.log(err.message);
-
-				}else{
+					console.log(error.message);
+				} else {
 					console.log(rowsC);
 					topCats=rowsC
 			//cats section --holt daten über cats aus db
 			db.all(`SELECT * FROM cats`,function(error,rowsCats){
             if (error){
-              console.log(err.message);
-            }
-			else{
-				let iCats =0;
-				let jCats= 0;
+              console.log(error.message);
+            } else {
+              let iCats =0;
+				      let jCats= 0;
 				//Verhindern das zwei gleiche bilder kommen
-				do{
-					iCats=Math.floor(Math.random()*rowsCats.length);
-					jCats=Math.floor(Math.random()*rowsCats.length);
-				}while(iCats==jCats);
-
+              do{
+                iCats=Math.floor(Math.random()*rowsCats.length);
+                jCats=Math.floor(Math.random()*rowsCats.length);
+              }while(iCats==jCats);
               let randomCats =[iCats,jCats];
-				nextCat= rowsCats.length+1;
+              nextCat= rowsCats.length+1;
+
               //dogs section --holt alle daten von den hunden aus db
               db.all(`SELECT * FROM dogs`,function(error,rowsDogs){
             		if (error){
             			console.log(err.message);
-
-            		}
-            		else{
+            		} else {
             			//Zwei zufällige bilder aus db auswählen
             			let iDogs =0;
-						let jDogs= 0;
-						//Verhindern das zwei gleiche bilder kommen
-						do{
-							iDogs=Math.floor(Math.random()*rowsDogs.length);
-							jDogs=Math.floor(Math.random()*rowsDogs.length);
-						}while(iDogs==jDogs);
+                  let jDogs= 0;
+						      //Verhindern das zwei gleiche bilder kommen
+						      do{
+                    iDogs=Math.floor(Math.random()*rowsDogs.length);
+							      jDogs=Math.floor(Math.random()*rowsDogs.length);
+						       }while(iDogs==jDogs);
+						         let randomDogs =[iDogs,jDogs];
+                     nextDog = rowsDogs.length+1;
 
-						let randomDogs =[iDogs,jDogs];
-						nextDog = rowsDogs.length+1;
-
-                  res.render('cats_and_dogs',{'topDogs': topDogs || [],
-        					'topCats' : topCats || [],
-                  'rowsCats':  rowsCats || [],
-            			'randomCats' : randomCats,
-                  'rowsDogs':  rowsDogs || [],
-            			'randomDogs' : randomDogs,
-                  'view' : req.query['view'],
+                     res.render('cats_and_dogs',{'topDogs': topDogs || [],
+                     'topCats' : topCats || [],
+                     'rowsCats':  rowsCats || [],
+                     'randomCats' : randomCats,
+                     'rowsDogs':  rowsDogs || [],
+                     'randomDogs' : randomDogs,
+                     'view' : req.query['view'],
+                      });
+                    }
                   });
                 }
               });
-            }
-          });
 
-				}
+				 }
 			});
 		}
 	});

@@ -96,6 +96,8 @@
   border-top: 5px solid #546e7a;
 }
 
+/*-----------------BUTTONS FOR CHANGING SITE--------------*/
+
 .half-circle-left{
      grid-area: leftButtonTop;
 }
@@ -120,6 +122,7 @@
   width:90px;
   border-radius: 90px 0px 0px 90px;
   background:#f57f17;
+
 }
 .btn{
   display:flex;
@@ -127,7 +130,6 @@
   align-items: center;
   font-size: 4vh;
 }
-
 
 .btn:hover{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -140,6 +142,8 @@
   width:100%;
   transform: translate(0%, 50%);
 }
+
+/*--------------------DISPLAYING THE PICTURES-----------------*/
 
 .cat-pictures{
   grid-area: cat;
@@ -160,17 +164,21 @@
 
 .single-pet{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-left: 10px;
-  margin-right: 10px;
-  height: 45%;
-  width: 45%;
+  height: 100%;
+  width: 100%;
+  transition: .3s ease;
+  backface-visibility: hidden;
   border-radius: 5px;
   object-fit: cover;
 }
 
+
 .single-pet-rate{
   /*box-shadow: https://www.w3schools.com/css/css3_shadows.asp*/
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  opacity: 1;
+  transition: .3s ease;
+  backface-visibility: hidden;
   margin-left: 10px;
   margin-right: 10px;
   height: 100%;
@@ -185,6 +193,58 @@
   margin-right: 10px;
 }
 
+.image-container{
+  position: relative;
+  width: 45%;
+  height: 45%;
+  margin: 5px;
+}
+
+.image-container-vote{
+  position: relative;
+  width: 45%;
+  height: 90%;
+  margin: 10px;
+}
+
+
+.middle {
+  transition: .3s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.image-container:hover .single-pet{
+  opacity: 0.3;
+}
+
+.image-container:hover .middle {
+  opacity: 1;
+}
+
+.image-container-vote:hover .single-pet-rate{
+  opacity: 0.3;
+}
+
+.image-container-vote:hover .middle {
+  opacity: 1;
+}
+
+
+.text {
+  background-color: #f47e17;
+  color: black;
+  font-size: 22px;
+  padding: 16px 32px;
+  border-radius: 5px;
+}
+
+
+/*----------------SWIPE ANIMATIONS ---------------------------*/
 
 .cats-animation{
   /* animationsname animationsdauer seite bleibt wie nach animation*/
@@ -290,4 +350,100 @@ h2{
   margin: 0;
   letter-spacing: 3px;
   word-spacing: 5px;
+}
+
+h3{
+  font-family: 'Sacramento';
+  font-weight: 200;
+  font-size: 7vh;
+  margin: 5px;
+  color: black;
+}
+
+/*---------------MODAL-------------------------------------------------------------*/
+
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    background-color: #f47e17;
+    color: white;
+    border-top: 10px solid #bb5000;
+    box-shadow: 0px 0px 5px black;
+    text-align: center;
+}
+
+/* Modal Body */
+.modal-body {
+  margin-top: 5%;
+  padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #f47e17;
+    color: white;
+    border-top: 2px solid #bb5000;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 500; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #f47e17; /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal.show{
+  display: block;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #ffaf4c;
+    margin:16% auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.2s
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modalButton{
+  background-color: #bb5000;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	  border-radius: 5px;
 }

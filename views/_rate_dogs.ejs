@@ -10,11 +10,37 @@
 </div>
 <div class="dog-pictures">
 		<% for(let i=0;i<2;i++){ %>
-			<a class="a-size" href="<%="/AddierenD/" + rowsDogs[randomDogs[i]].Id +"/"+ rowsDogs[randomDogs[i]].votes %>">
-				<img class="single-pet-rate" src="<%= rowsDogs[randomDogs[i]].img %>">
-			</a>
+			<div class="image-container-vote">
+				<a class="a-size" href="<%="/AddierenD/" + rowsDogs[randomDogs[i]].Id +"/"+ rowsDogs[randomDogs[i]].votes %>">
+					<img class="single-pet-rate" src="<%= rowsDogs[randomDogs[i]].img %>">
+					<div class="middle">
+					<div class="text">Vote for this Dog</div>
+					</div>
+				</a>
+			</div>
 		<% } %>
 </div>
+<div><a id="uploadD">Dont like theses Dogs? Upload your own</a>
+	<div id="modalDogsUpload" class="modal <%if (dogSuccess==='true'){%> show <%}%>">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span id="spanDogs" class="close">&times;</span>
+				<%if (dogSuccess==='true'){%> <h3>Your Upload was successful</h3> <%}else{%>
+				<h3>Upload your Dog</h3>
+				<%}%>
+			</div>
+			<div class="modal-body">
+				<form action="upload_dogimage" method="post" enctype="multipart/form-data">
+					<input type="file" name="dateiname">
+					<br/><br/>
+					<input class="modalButton" type="submit" value="Upload" name="submit"></br><br/>
+				</form>
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+
 <div class="footer"></div>
 
 

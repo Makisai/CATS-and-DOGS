@@ -66,7 +66,7 @@ app.post('/upload_dogimage', function(req, res){
 	  db.run(sql);
 	  console.log(req.file);
 	  //res.end('Your file has been uploaded');
-	  res.redirect('/uploadSuccessDog');
+	  res.redirect('/?view=dog&dogSuccess=true');
 	});
 
 });
@@ -83,19 +83,10 @@ app.post('/upload_catimage', function(req, res){
 	  db.run(sql);
 	  console.log(req.file);
 	  //res.end('Your file has been uploaded');
-	  res.redirect('/uploadSuccessCat');
+	  res.redirect('/?view=cat&catSuccess=true');
 	});
 
 });
-
-app.get('/uploadSuccessCat', function (request, response) {
-	response.render('uploadSuccessCat');
-	});
-
-app.get('/uploadSuccessDog', function (request, response) {
-	response.render('uploadSuccessDog');
-	});
-
 
 
 //----------------------------------------------------------------------------------------------//
@@ -163,6 +154,8 @@ app.get('/', function (req,res){
                      'rowsDogs':  rowsDogs || [],
                      'randomDogs' : randomDogs,
                      'view' : req.query['view'],
+                     'dogSuccess' : req.query['dogSuccess'],
+                     'catSuccess' : req.query['catSuccess'],
                       });
                     }
                   });

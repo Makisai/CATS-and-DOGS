@@ -11,7 +11,12 @@
 </div>
 <div class="cat-pictures">
 		<% for(let i=0;i<4;i++){ %>
-			<img class="single-pet" src="<%= topCats[i].img %>">
+			<div class="image-container">
+				<img class="single-pet" src="<%= topCats[i].img %>">
+				<div class="middle">
+					<div class="text"><%= topCats[i].votes + " Votes" %></div>
+				</div>
+			</div>
 		<%}%>
 </div>
 <div class="half-circle-right">
@@ -21,7 +26,12 @@
 </div>
 <div class="dog-pictures">
 		<% for(let i=0;i<4;i++){ %>
-			<img class="single-pet" src="<%= topDogs[i].img %>">
+			<div class="image-container">
+				<img class="single-pet" src="<%= topDogs[i].img %>">
+				<div class="middle">
+					<div class="text"><%= topDogs[i].votes + " Votes" %></div>
+					</div>
+			</div>
 		<%}%>
 </div>
 <div class="footer"></div>

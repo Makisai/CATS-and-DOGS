@@ -61,16 +61,11 @@ spanD.onclick = function() {
     modalDogs.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close the modal for cats
-window.onclick = function(event) {
-    if (event.target == modalCats) {
-        modalCats.style.display = "none";
-    }
-}
-
 // When the user clicks anywhere outside of the modal, close the modal for dogs
 window.onclick = function(event) {
     if (event.target == modalDogs) {
         modalDogs.style.display = "none";
+    }else if (event.target == modalCats) {
+        modalCats.style.display = "none";
     }
 }

@@ -1,3 +1,4 @@
+/*---------------------------Classes for Grids of the main pages-------------------------*/
 .cats{
   background-color: #819ca9;
   font-family: 'Amatic SC', cursive;
@@ -9,10 +10,11 @@
   top: 0px;
   right: 0px;
   bottom: 0px;
+  /*wie weit oben auf der leite liegt es(layer)*/
   z-index: 300;
   display: grid;
   grid-template-columns: 10% 40% 40% 10%;
-  grid-template-rows: 5% 20% 5% 5% 25% 25% 10% 5%;
+  grid-template-rows: 5% 20% 5% 5% 25% 25% 8% 2% 5%;
   grid-template-areas:
   "headertop      headertop headertop headertop "
   "header         header    header    header"
@@ -20,6 +22,7 @@
   ".              .         .         ."
   ".              cat      cat        rightButton"
   ".              cat      cat        rightButton"
+  ".              upload   upload     ."
   ".              .         .         ."
   "footer         footer    footer    footer"
 }
@@ -36,7 +39,7 @@
   z-index: 200;
   display: grid;
   grid-template-columns: 10% 40% 40% 10%;
-  grid-template-rows: 5% 20% 5% 5% 25% 25% 10% 5%;
+  grid-template-rows: 5% 20% 5% 5% 25% 25% 8% 2% 5%;
   grid-template-areas:
   "headertop      headertop headertop headertop "
   "header         header    header    header"
@@ -44,8 +47,9 @@
   ".              .         .         ."
   "leftButtonTop  dog      dog        ."
   "leftButtonTop  dog      dog        ."
-  ".              .         .         ."
-  "footer         footer    footer    footer"
+  ".              upload   upload     ."
+  ".              .        .          ."
+  "footer         footer   footer     footer"
 }
 
 .home{
@@ -78,10 +82,10 @@
 }
 
 .header{
-  padding-bottom: 5px;
-  text-align: center;
   background-color: #546e7a;
   grid-area: header;
+  padding-bottom: 5px;
+  text-align: center;
   box-shadow: 0px 0px 5px black;
 }
 
@@ -128,7 +132,7 @@
   display:flex;
   text-align: center;
   align-items: center;
-  font-size: 4vh;
+  font-size: 4.5vh;
 }
 
 .btn:hover{
@@ -141,6 +145,40 @@
   height:100%;
   width:100%;
   transform: translate(0%, 50%);
+}
+
+.upload-button{
+  width: 45%;
+  grid-area: upload;
+  background-color: #f57f17;
+  margin: 4px 25%;
+	border-radius: 5px;
+}
+
+.upload-button:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #ffaf4c;
+  cursor: pointer;
+}
+
+.btn-dogperson{
+  padding-top: 10px;
+  padding-left: 15px;
+}
+
+.btn-catperson{
+  padding-top: 10px;
+  padding-right: 15px;
+}
+
+.btn-catback{
+  padding-left: 15px;
+  padding-top: 10px;
+}
+
+.btn-dogback{
+  padding-right: 15px;
+  padding-top: 10px;
 }
 
 /*--------------------DISPLAYING THE PICTURES-----------------*/
@@ -161,17 +199,16 @@
   flex-wrap: wrap;
 }
 
-
 .single-pet{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 100%;
   width: 100%;
+  /*transition und backface für hover animation*/
   transition: .3s ease;
   backface-visibility: hidden;
   border-radius: 5px;
   object-fit: cover;
 }
-
 
 .single-pet-rate{
   /*box-shadow: https://www.w3schools.com/css/css3_shadows.asp*/
@@ -187,6 +224,7 @@
   object-fit: cover;
 }
 
+ /*größe des links auf dem bild*/
 .a-size{
   width:45%;
   margin-left: 10px;
@@ -206,7 +244,6 @@
   height: 90%;
   margin: 10px;
 }
-
 
 .middle {
   transition: .3s ease;
@@ -358,6 +395,14 @@ h3{
   font-size: 7vh;
   margin: 5px;
   color: black;
+}
+
+p{
+  font-size: 4vh;
+  font-weight: normal;
+  text-align: center;
+  word-spacing: 5px;
+  margin-top: 5px;
 }
 
 /*---------------MODAL-------------------------------------------------------------*/

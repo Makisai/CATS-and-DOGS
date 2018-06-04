@@ -1,11 +1,11 @@
 <div class="header-stripe"></div>
 <div class="header">
-	<h1>Cats</h1>
+	<h1>Katzen</h1>
 </div>
-<div class="subtitle"><h2>Click on the cutest Cat</h2></div>
+<div class="subtitle"><h2>klicke auf die Katze, die süßer ist</h2></div>
 <div class="half-circle-right">
 	<div class="align-button">
-		<a onclick="catsSlideBack()"><div class="btn btn-right">Back to <br /> start</div></a>
+		<a onclick="catsSlideBack()"><div class="btn btn-right"><p class="btn-catback">zurück zum Anfang</p></div></a>
 	</div>
 </div>
 <div class="cat-pictures">
@@ -14,30 +14,32 @@
 				<a class="a-size" href="<%="/AddierenC/" + rowsCats[randomCats[i]].Id +"/"+ rowsCats[randomCats[i]].votes %>">
 					<img class="single-pet-rate" src="<%= rowsCats[randomCats[i]].img %>">
 					<div class="middle">
-					<div class="text">Vote for this Cat</div>
+					<div class="text">Vote für diese Katze</div>
 					</div>
 				</a>
 			</div>
 		<% } %>
 </div>
-<div><a id="uploadC">Dont like theses Cats? Upload your own</a>
-	<div id="modalCatsUpload" class="modal <%if (catSuccess==='true'){%> show <%}%>">
-		<div class="modal-content">
-			<div class="modal-header">
-				<span id="spanCats" class="close">&times;</span>
-				<%if (catSuccess==='true'){%> <h3>Your Upload was successful</h3> <%}else{%>
-				<h3>Upload your Cat</h3>
-				<%}%>
-			</div>
-			<div class="modal-body">
-			<form action="upload_catimage" method="post" enctype="multipart/form-data">
-				<input type="file" name="dateiname"><br/><br/>
-				<input class="modalButton" type="submit" value="Upload" name="submit"></br><br/>
-			</form>
-			</div>
-			<div class="modal-footer"></div>
+<div class="upload-button" id="uploadC">
+	<p>Dir gefallen diese Katzen nicht? Lade deine eigenen hoch!</p>
+</div>
+<div id="modalCatsUpload" class="modal <%if (catSuccess==='true'){%> show <%}%>">
+	<div class="modal-content">
+		<div class="modal-header">
+			<span id="spanCats" class="close">&times;</span>
+			<%if (catSuccess==='true'){%> <h3>Dein Upload war erfolgreich</h3> <%}else{%>
+			<h3>Lade deine eigene Katze hoch</h3>
+			<%}%>
 		</div>
+		<div class="modal-body">
+		<form action="upload_catimage" method="post" enctype="multipart/form-data">
+			<input type="file" name="dateiname"><br/><br/>
+			<input class="modalButton" type="submit" value="Upload" name="submit"></br><br/>
+		</form>
+		</div>
+		<div class="modal-footer"></div>
 	</div>
 </div>
+
 
 <div class="footer"></div>

@@ -59,14 +59,15 @@ app.post('/upload_dogimage', function(req, res){
 	  if(err) {
 		console.log('Error Occured', err);
 		return;
-	  }
-	  let imgpath = "images/dog"+nextDog+".jpg";
-	  sql =`INSERT INTO dogs (img)VALUES ('${imgpath}')`
-	  console.log(sql);
-	  db.run(sql);
-	  console.log(req.file);
-	  //res.end('Your file has been uploaded');
-	  res.redirect('/?view=dog&dogSuccess=true');
+  }else{
+  	  let imgpath = "images/dog"+nextDog+".jpg";
+  	  sql =`INSERT INTO dogs (img)VALUES ('${imgpath}')`
+  	  console.log(sql);
+  	  db.run(sql);
+  	  console.log(req.file);
+  	  //res.end('Your file has been uploaded');
+  	  res.redirect('/?view=dog&dogSuccess=true');
+    }
 	});
 
 });
@@ -76,14 +77,15 @@ app.post('/upload_catimage', function(req, res){
 	  if(err) {
 		console.log('Error Occured', err);
 		return;
-	  }
-	  let imgpath = "images/cat"+nextCat+".jpg";
-	  sql =`INSERT INTO cats (img)VALUES ('${imgpath}')`
-	  console.log(sql);
-	  db.run(sql);
-	  console.log(req.file);
-	  //res.end('Your file has been uploaded');
-	  res.redirect('/?view=cat&catSuccess=true');
+  }else{
+  	  let imgpath = "images/cat"+nextCat+".jpg";
+  	  sql =`INSERT INTO cats (img)VALUES ('${imgpath}')`
+  	  console.log(sql);
+  	  db.run(sql);
+  	  console.log(req.file);
+  	  //res.end('Your file has been uploaded');
+  	  res.redirect('/?view=cat&catSuccess=true');
+    }
 	});
 
 });

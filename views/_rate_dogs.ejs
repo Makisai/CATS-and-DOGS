@@ -1,11 +1,11 @@
 <div class="header-stripe"></div>
 <div class="header">
-	<h1>Dogs</h1>
+	<h1>Hunde</h1>
 </div>
-<div class="subtitle"><h2>Click on the cutest Dog</h2></div>
+<div class="subtitle"><h2>Klicke auf den Hund, der süßer ist</h2></div>
 <div class="half-circle-left">
 	<div class="align-button">
-		<a onclick="dogsSlideBack()"><div class="btn btn-left">Back to <br /> start</div></a>
+		<a onclick="dogsSlideBack()"><div class="btn btn-left"><p class="btn-dogback">Zurück zum Anfang</div></p></a>
 	</div>
 </div>
 <div class="dog-pictures">
@@ -14,30 +14,31 @@
 				<a class="a-size" href="<%="/AddierenD/" + rowsDogs[randomDogs[i]].Id +"/"+ rowsDogs[randomDogs[i]].votes %>">
 					<img class="single-pet-rate" src="<%= rowsDogs[randomDogs[i]].img %>">
 					<div class="middle">
-					<div class="text">Vote for this Dog</div>
+					<div class="text">Vote für diesen Hund</div>
 					</div>
 				</a>
 			</div>
 		<% } %>
 </div>
-<div><a id="uploadD">Dont like theses Dogs? Upload your own</a>
-	<div id="modalDogsUpload" class="modal <%if (dogSuccess==='true'){%> show <%}%>">
-		<div class="modal-content">
-			<div class="modal-header">
-				<span id="spanDogs" class="close">&times;</span>
-				<%if (dogSuccess==='true'){%> <h3>Your Upload was successful</h3> <%}else{%>
-				<h3>Upload your Dog</h3>
-				<%}%>
-			</div>
-			<div class="modal-body">
-				<form action="upload_dogimage" method="post" enctype="multipart/form-data">
-					<input type="file" name="dateiname">
-					<br/><br/>
-					<input class="modalButton" type="submit" value="Upload" name="submit"></br><br/>
-				</form>
-			</div>
-			<div class="modal-footer"></div>
+<div class="upload-button" id="uploadD">
+	<p>Dir gefallen diese Hunde nicht? Lade deine eigenen hoch!</p>
+</div>
+<div id="modalDogsUpload" class="modal <%if (dogSuccess==='true'){%> show <%}%>">
+	<div class="modal-content">
+		<div class="modal-header">
+			<span id="spanDogs" class="close">&times;</span>
+			<%if (dogSuccess==='true'){%> <h3>Dein Upload war erfolgreich</h3> <h4>möchtest du noch mehr Bilder von Hunden hochladen?</h4> <%}else{%>
+			<h3>Lade deine eigenen Hunde hoch</h3>
+			<%}%>
 		</div>
+		<div class="modal-body">
+			<form action="upload_dogimage" method="post" enctype="multipart/form-data">
+				<input type="file" name="dateiname">
+				<br/><br/>
+				<input class="modalButton" type="submit" value="Upload" name="submit"></br><br/>
+			</form>
+		</div>
+		<div class="modal-footer"></div>
 	</div>
 </div>
 

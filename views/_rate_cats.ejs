@@ -1,6 +1,6 @@
 <div class="header-stripe"></div>
 <div class="header">
-	<h1>Katzen</h1>
+	<h1>Cats</h1>
 </div>
 <div class="subtitle"><h2>klicke auf die Katze, die süßer ist</h2></div>
 <div class="half-circle-right">
@@ -27,7 +27,12 @@
 	<div class="modal-content">
 		<div class="modal-header">
 			<span id="spanCats" class="close">&times;</span>
-			<%if (catSuccess==='true'){%> <h3>Dein Upload war erfolgreich</h3> <%}else{%>
+			<%if (catSuccess==='true'){%>
+				<h3>Dein Upload war erfolgreich</h3>
+				<h4>möchtest du noch mehr Bilder von Hunden hochladen?</h4>
+				<%}else if (catSuccess==='false'){%>
+		 			<h3>Dein Upload ist fehlgeschlagen</h3> <h4>möchtest du nochmal versuchen Bilder von Katzen hochzuladen?</h4>
+			<%}else{%>
 			<h3>Lade deine eigene Katze hoch</h3>
 			<%}%>
 		</div>

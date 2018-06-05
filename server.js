@@ -55,27 +55,29 @@ let uploadCats = multer({ storage : storageCats}).single('dateiname');
 
 
 app.post('/upload_dogimage', function(req, res){
-	uploadDogs(req, res, function(err) {
-	  if(err) {
-		console.log('Error Occured', err);
-		return;
-  }else{
-  	  let imgpath = "images/dog"+nextDog+".jpg";
-  	  sql =`INSERT INTO dogs (img)VALUES ('${imgpath}')`
-  	  console.log(sql);
-  	  db.run(sql);
-  	  console.log(req.file);
-  	  //res.end('Your file has been uploaded');
-  	  res.redirect('/?view=dog&dogSuccess=true');
+  console.log("julia hat was gefunden: " + req.file);
+  uploadDogs(req, res, function(err) {
+    if(err||req.file === undefined) {
+      console.log('Error Occured', err);
+      res.redirect('/?view=dog&dogSuccess=false');
+      return;
+    }else{
+      let imgpath = "images/dog"+nextDog+".jpg";
+      sql =`INSERT INTO dogs (img)VALUES ('${imgpath}')`
+      console.log(sql);
+      db.run(sql);
+      console.log('file:', req.file);
+      //res.end('Your file has been uploaded');
+      res.redirect('/?view=dog&dogSuccess=true');
     }
-	});
-
+  });
 });
 
 app.post('/upload_catimage', function(req, res){
 	uploadCats(req, res, function(err) {
-	  if(err) {
+	  if(err||req.file === undefined) {
 		console.log('Error Occured', err);
+    res.redirect('/?view=cat&catSuccess=false');
 		return;
   }else{
   	  let imgpath = "images/cat"+nextCat+".jpg";
